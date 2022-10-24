@@ -23,7 +23,7 @@
 
     <div>
         <label for="number">Contact number</labe>
-        <input type="number" name="number" id="number" required placeholder="+233">
+        <input type="number" name="number" id="number" required placeholder="+233" pattern="^[\W][0-9]{3}?[\s]?[0-9]{2}?[\s]?[0-9]{3}[\s]?[0-9]{4}$" title="Phon number should start with +233 and remaing 9 digit with 0-9. eg +233 548342821">
     </div>
         <br>
         <br>
