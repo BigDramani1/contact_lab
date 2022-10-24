@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
     $result = mysqli_query($connection, $sql);
 
     if($result){
-        header("Location: index.php?msg=New record created successfully");
+        header("Location: view.php?msg=New record created successfully");
     }
     else{
         echo "Failed: ". mysqli_error($connection);
@@ -51,7 +51,7 @@ if(isset($_POST['submit'])){
 
     <div>
         <label for="number">Contact number</labe>
-        <input type="number" name="number" id="number" required  value="<?php echo $row['pphoned'] ?>">
+        <input type="tel" name="number" id="number" required  value="<?php echo $row['pphoned'] ?>">
     </div>
         <br>
         <br>

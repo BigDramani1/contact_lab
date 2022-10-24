@@ -9,41 +9,49 @@
     <title>PHONE BOOK</title>
 </head>
 <body>
+    <h3>Enter Contact Details</h3>
+    <p>Complete the form to add a new contact</p>
+    <form method="post">
 
-   <a href="add.php"> Add New</a>
-   <table>
-   <thread>
-    <tr>
-        
-        <th>Contact Name</th>
-        <th>Contact Number</th>
-        <th>Action</th>
-    </tr>
-   </thread>
-   <tbody>
-    <?php
-    include "db.php";
-        $sql = "SELECT * FROM phonebook";
-        $result = mysqli_query($connection, $sql);
-        while ($row = mysqli_fetch_assoc($result)) {
-
-    ?>
-    <tr>
+    <div>
+        <label for="name"> Contact name</label>
+        <input type="text" name="name" id="name" required placeholder="Name">
     
-        <td><?php echo $row['pname']?></td>
-        <td><?php echo $row['pphoned']?></td>
-        <td>
-            <a href="edit.php?id=<?php echo $row['pid']?>">Edit</a>
-            <a href="delete.php?id=<?php echo $row['pid']?>">Delete</a>
-        </td>
-    </tr>
+    </div>
+        <br>
+        <br>
 
-   </tbody>
-
-    <?php } ?>
-    </table>
+    <div>
+        <label for="number">Contact number</labe>
+        <input type="tel" name="number" id="number" required placeholder="+233" pattern="^[\W][0-9]{3}?[\s]?[0-9]{2}?[\s]?[0-9]{3}[\s]?[0-9]{4}$" title="Phon number should start with +233 and remaing 9 digit with 0-9. eg +233 548342821">
+    </div>
+        <br>
+        <br>
+        <button name="submit">submit</button> 
+    </form>
 </body>
 </html>
 
+<?php
+include "db.php";
 
+if(isset($_POST['submit'])){
+
+    $pname = $_POST['name'];
+    $pphoned = $_POST['number'];
+
+    $sql = "INSERT INTO phonebook (`pname`,`pphoned`)
+     VALUES ('$pname','$pphoned')";
+
+    $result = mysqli_query($connection, $sql);
+
+    if($result){
+        header("Location: view.php");
+    }
+    else{
+        echo "Failed: ". mysqli_error($connection);
+    }
+}
+
+?>
 
