@@ -30,35 +30,17 @@
 		alert('Window closed.');
 		},
 		callback: function(response){
-            alert("payment have been made");
+            alert("payment have been made"+ response.reference);
+            $.ajax({
+              url:"processing.php?reference="+ response.reference,
+              method:'GET',
+              success: function (response){
+                alert(response);
+              }
+
+            });
 		}
 	});
 	handler.openIframe();
 }
 </script> 
-<!-- <script type="text/javascript">
-    function myAjax(){
-        event.preventDefault();
-        alert("this is me from javascript");
-        const xhttp=new XMLHttpRequest();
-        xhttp.onload = function(){
-            alert(this.repsonseText);
-        }
-        xttp.open("GET", "../actions/location of the processing.php", true);
-        xttp.send();
-    }
-</script>
-
-    //query. get will be the location of the file. make an id for the button and then replace the button  with button name with # infront
-    <script>
-$(document).ready(function(){
-  $("#button_id").click(function(){
-    event.preventDefault();
-    alert(this is jquery");
-    function(data, status)
-    $.get("demo_test.asp", function(data, status){
-      alert("Data: " + data + "\nStatus: " + status);
-    });
-  });
-});
-</script> -->
